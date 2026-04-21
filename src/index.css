@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: "DM Sans", sans-serif;
+    background-color: #f6f4e8;
+  }
+  h1 {
+    color: #211832;
+  }
+  p {
+    color: #3a2525;
+  }
+  section {
+    @apply px-25 py-12;
+  }
+}
+
+@layer components {
+  .links {
+    @apply bg-[#7fbd58] py-4 px-5 rounded-md text-[#211832] uppercase tracking-widest font-bold text-lg cursor-pointer;
+  }
+}
