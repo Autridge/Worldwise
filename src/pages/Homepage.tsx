@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import PageNav from "../components/PageNav";
+import GradientText from "../components/GradientText";
 
 export default function Homepage() {
   return (
@@ -7,10 +8,16 @@ export default function Homepage() {
       <PageNav />
       <div className="flex items-center justify-center gap-10 ">
         {/* <PageNav /> */}
-        <h1 className="text-8xl font-bold">
+        <GradientText
+          colors={["#211832", "#3a2525", "#7fbd58"]}
+          animationSpeed={8}
+          showBorder={false}
+          className="text-8xl font-bold"
+        >
           You travel the World, WorldWise keeps track of your adventures
-        </h1>
-        <p className="text-xl">
+        </GradientText>
+
+        <p className="text-xl text-[#3a2525]">
           A world map that tracks your footsteps into every city you can think
           of. Never forget your wonderful experiences, and show your friends how
           you have wandered the world
