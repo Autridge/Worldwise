@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom";
 export default function CityItem({ city }) {
-  const { cityName, emoji, date } = city;
+  const { cityName, emoji, date, id, position } = city;
 
-  const formatDate = (date) =>
+  console.log(position);
+
+  const formatDate = (date: Date) =>
     new Intl.DateTimeFormat("en", {
       day: "numeric",
       month: "long",
@@ -10,13 +13,18 @@ export default function CityItem({ city }) {
 
   return (
     <li
-      className="flex justify-between items-center gap-2 bg-secondary-foreground text-white p-3 rounded-md border-l-4 border-brandGr mb-2 mt-1
+      className="flexn bg-secondary-foreground text-white p-2 rounded-md border-l-4 border-brandGr mb-2 text-sm 
     "
     >
-      <span>{emoji}</span>
-      <h3>{cityName}</h3>
-      <time>({formatDate(date)})</time>
-      <button className="cursor-pointer">&times;</button>
+      <Link
+        to={`${id}?lat=${position.lat}&lng=${position.lng}`}
+        className="flex gap-3.5 items-center g p-2 w-full justify-between"
+      >
+        <span>{emoji}</span>
+        <h3>{cityName}</h3>
+        <time>({formatDate(date)})</time>
+        <button className="cursor-pointer">&times;</button>
+      </Link>
     </li>
   );
 }

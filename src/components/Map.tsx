@@ -1,5 +1,26 @@
 import React from "react";
+import { useSearchParams } from "react-router-dom";
 
 export default function Map() {
-  return <div className="bg-[#31363F] rounded-md w-300">Map</div>;
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const lat = searchParams.get("lat");
+  const lng = searchParams.get("lng");
+
+  return (
+    <div className="bg-[#31363F] rounded w-200 p-2">
+      <p>Map</p>
+      <p>
+        Postion: {lat}, {lng}
+      </p>
+
+      <button
+        onClick={() => {
+          setSearchParams({ lat: 23, lng: 50 });
+        }}
+      >
+        Change Position
+      </button>
+    </div>
+  );
 }
