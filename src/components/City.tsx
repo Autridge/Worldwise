@@ -1,4 +1,7 @@
-import { useParams, useSearchParams } from "react-router-dom";
+import { useCities } from "@/contexts/CitiesContext";
+import { useEffect } from "react";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import Spinner from "./Spinner";
 
 const formatDate = (date: string | number | Date) =>
   new Intl.DateTimeFormat("en", {
@@ -10,66 +13,66 @@ const formatDate = (date: string | number | Date) =>
 
 function City() {
   const { id } = useParams();
+  const { getCity, currentCity, isLoading } = useCities();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
-  const lat = searchParams.get("lat");
-  const lng = searchParams.get("lng");
-
-  // TEMP DATA
-  const currentCity = {
-    cityName: "Lisbon",
-    emoji: "🇵🇹",
-    date: "2027-10-31T15:59:59.138Z",
-    notes: "My favorite city so far!",
-  };
+  useEffect(
+    function () {
+      getCity(id);
+    },
+    [id],
+  );
 
   const { cityName, emoji, date, notes } = currentCity;
 
+  if (isLoading) return <Spinner />;
   return (
-    <section>
-      <p>City {id}</p>{" "}
-      <p>
-        Position: {lat}, {lng}
-      </p>
-    </section>
+    <div className="flex w-full max-h-full flex-col gap-5  rounded-[7px] bg-gray-600 px-12 py-8">
+      <div className="flex flex-col gap-2">
+        <h6 className="cityHeading">City name</h6>
+        <h3 className="flex items-center gap-4 text-[1.5rem] text-white">
+          <span className="cityText leading-none">{emoji}</span> {cityName}
+        </h3>
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <h6 className="cityHeading">You went to {cityName} on</h6>
+        <p className="cityText">{formatDate(date || null)}</p>
+      </div>
+
+      {notes && (
+        <div className="flex flex-col gap-2">
+          <h6 className="cityHeading">Your notes</h6>
+          <p className="cityText">{notes}</p>
+        </div>
+      )}
+
+      <div className="flex flex-col gap-2">
+        <h6 className="cityHeading">Learn more</h6>
+        <a
+          className="cityText underline text-amber-400"
+          href={`https://en.wikipedia.org/wiki/${cityName}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Check out {cityName} on Wikipedia
+        </a>
+      </div>
+
+      <div>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            navigate(-1);
+          }}
+          className="navBtn"
+        >
+          &larr; Back
+        </button>
+      </div>
+    </div>
   );
-
-  //   return (
-  //     <div className={styles.city}>
-  //       <div className={styles.row}>
-  //         <h6>City name</h6>
-  //         <h3>
-  //           <span>{emoji}</span> {cityName}
-  //         </h3>
-  //       </div>
-
-  //       <div className={styles.row}>
-  //         <h6>You went to {cityName} on</h6>
-  //         <p>{formatDate(date || null)}</p>
-  //       </div>
-
-  //       {notes && (
-  //         <div className={styles.row}>
-  //           <h6>Your notes</h6>
-  //           <p>{notes}</p>
-  //         </div>
-  //       )}
-
-  //       <div className={styles.row}>
-  //         <h6>Learn more</h6>
-  //         <a
-  //           href={`https://en.wikipedia.org/wiki/${cityName}`}
-  //           target="_blank"
-  //           rel="noreferrer"
-  //         >
-  //           Check out {cityName} on Wikipedia &rarr;
-  //         </a>
-  //       </div>
-
-  //       <div></div>
-  //     </div>
-  //   );
 }
 
 export default City;

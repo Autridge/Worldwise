@@ -1,5 +1,8 @@
+import { useCities } from "@/contexts/CitiesContext";
 import { Link } from "react-router-dom";
 export default function CityItem({ city }) {
+  const { currentCity } = useCities();
+
   const { cityName, emoji, date, id, position } = city;
 
   console.log(position);
@@ -13,12 +16,12 @@ export default function CityItem({ city }) {
 
   return (
     <li
-      className="flexn bg-secondary-foreground text-white p-2 rounded-md border-l-4 border-brandGr mb-2 text-sm 
+      className="flex bg-secondary-foreground text-white p-2 rounded-md  mb-2 text-sm 
     "
     >
       <Link
         to={`${id}?lat=${position.lat}&lng=${position.lng}`}
-        className="flex gap-3.5 items-center g p-2 w-full justify-between"
+        className={`cityList ${id === currentCity.id ? "border-l-4 border-brandGr" : ""}`}
       >
         <span>{emoji}</span>
         <h3>{cityName}</h3>

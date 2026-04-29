@@ -40,6 +40,18 @@
   .active {
     @apply bg-brandGr px-2 py-1 rounded-lg transition-colors duration-300;
   }
+  .cityHeading {
+    @apply text-sm font-black uppercase text-gray-950;
+  }
+  .cityText {
+    @apply text-[1.2rem] text-white;
+  }
+  .cityList {
+    @apply flex gap-3.5 items-center p-2 w-full justify-between;
+  }
+  .navBtn {
+    @apply border border-white rounded p-2 text-white cursor-pointer hover:bg-gray-50 hover:text-black transition-all duration-75;
+  }
 }
 
 @theme inline {
