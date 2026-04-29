@@ -2,6 +2,7 @@ import { useCities } from "@/contexts/CitiesContext";
 import { useEffect } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import Spinner from "./Spinner";
+import BackBtn from "./BackBtn";
 
 const formatDate = (date: string | number | Date) =>
   new Intl.DateTimeFormat("en", {
@@ -61,15 +62,7 @@ function City() {
       </div>
 
       <div>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            navigate(-1);
-          }}
-          className="navBtn"
-        >
-          &larr; Back
-        </button>
+        <BackBtn />
       </div>
     </div>
   );
