@@ -5,10 +5,7 @@ import AppNav from "./AppNav";
 export default function SideBar() {
   const navigate = useNavigate();
   return (
-    <section
-      className="bg-[#222831] p-8 flex flex-col items-center w-125 rounded min-h-screen justify-between"
-      S
-    >
+    <section className="bg-[#222831] p-8 flex flex-col items-center w-125 rounded min-h-screen justify-between">
       <Logo />
 
       <div className=" flex flex-col items-center gap-6">

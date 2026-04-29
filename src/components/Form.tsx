@@ -22,10 +22,13 @@ function Form() {
   const [notes, setNotes] = useState("");
 
   return (
-    <form className="">
-      <div className="">
-        <label htmlFor="cityName">City name</label>
+    <form className="flex flex-col bg-gray-950 p-4 text-gray-950 gap-2">
+      <div className="flex flex-col gap-1">
+        <label className="cityHeading" htmlFor="cityName">
+          City name
+        </label>
         <input
+          className=" bg-gray-300 "
           id="cityName"
           onChange={(e) => setCityName(e.target.value)}
           value={cityName}
@@ -33,9 +36,12 @@ function Form() {
         {/* <span className={styles.flag}>{emoji}</span> */}
       </div>
 
-      <div className="">
-        <label htmlFor="date">When did you go to {cityName}?</label>
+      <div className="flex flex-col gap-1">
+        <label className="cityHeading" htmlFor="date">
+          When did you go to {cityName}?
+        </label>
         <input
+          className="bg-gray-300"
           id="date"
           onChange={(e) => setDate(e.target.value)}
           value={date}
@@ -43,15 +49,18 @@ function Form() {
       </div>
 
       <div className="">
-        <label htmlFor="notes">Notes about your trip to {cityName}</label>
+        <label className="cityHeading" htmlFor="notes">
+          Notes about your trip to {cityName}
+        </label>
         <textarea
+          className="bg-gray-300 w-full"
           id="notes"
           onChange={(e) => setNotes(e.target.value)}
           value={notes}
         />
       </div>
 
-      <div className="">
+      <div className="flex justify-between items-center">
         <Button>Add</Button>
         <BackBtn />
       </div>
