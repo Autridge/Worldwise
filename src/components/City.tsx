@@ -29,7 +29,7 @@ function City() {
 
   if (isLoading) return <Spinner />;
   return (
-    <div className="flex w-full max-h-full flex-col gap-5  rounded-[7px] bg-gray-600 px-12 py-8">
+    <div className="flex w-full max-h-full flex-col gap-5  rounded-[7px] bg-gray-950 px-12 py-8">
       <div className="flex flex-col gap-2">
         <h6 className="cityHeading">City name</h6>
         <h3 className="flex items-center gap-4 text-[1.5rem] text-white">

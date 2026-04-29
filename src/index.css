@@ -42,7 +42,7 @@
     @apply bg-brandGr px-2 py-1 rounded-lg transition-colors duration-300;
   }
   .cityHeading {
-    @apply text-sm font-black uppercase text-gray-950;
+    @apply text-sm font-black uppercase text-brandGr;
   }
   .cityText {
     @apply text-[1.2rem] text-white;
