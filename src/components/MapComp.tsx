@@ -10,20 +10,19 @@ import {
 } from "react-leaflet";
 import { useCities } from "@/contexts/CitiesContext";
 import { useGeoLocation } from "@/hooks/useGeoLocation";
+import { useURLPosition } from "@/hooks/useURLPosition";
+
 import Button from "./Button";
 
 export default function MapComp() {
   const { cities } = useCities();
   const [mapPosition, setMapPosition] = useState<number[] | string[]>([40, 0]);
-  const [searchParams] = useSearchParams();
   const {
     isLoading: isLoadingPosition,
     position: geoLocationPosition,
     getPosition,
   } = useGeoLocation();
-
-  const mapLat = searchParams.get("lat");
-  const mapLng = searchParams.get("lng");
+  const { mapLat, mapLng } = useURLPosition();
 
   useEffect(
     function () {
