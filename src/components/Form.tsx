@@ -61,7 +61,7 @@ function Form() {
       </div>
 
       <div className="flex justify-between items-center">
-        <Button>Add</Button>
+        <Button type="greenBtn">Add</Button>
         <BackBtn />
       </div>
     </form>

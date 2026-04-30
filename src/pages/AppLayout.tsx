@@ -1,6 +1,6 @@
 import React from "react";
 import SideBar from "../components/SideBar";
-import Map from "../components/Map";
+import Map from "../components/MapComp";
 
 export default function AppLayout() {
   return (
