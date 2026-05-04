@@ -10,7 +10,7 @@ import {
 } from "react-leaflet";
 import { useCities } from "@/contexts/CitiesContext";
 import { useGeoLocation } from "@/hooks/useGeoLocation";
-import { useURLPosition } from "@/hooks/useURLPosition";
+import useURLPosition from "@/hooks/useURLPosition";
 
 import Button from "./Button";
 
@@ -29,6 +29,7 @@ export default function MapComp() {
       if (mapLat && mapLng) {
         setMapPosition([mapLat, mapLng]);
       }
+      console.log("map lat:", mapLat);
     },
     [mapLat, mapLng],
   );
@@ -85,7 +86,6 @@ function DetectClick() {
   const navigate = useNavigate();
   const map = useMapEvents({
     click: (e) => {
-      console.log(e);
       navigate(`form?lat=${e.latlng?.lat}&lng=${e.latlng?.lng}`);
     },
   });
