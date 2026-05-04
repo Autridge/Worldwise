@@ -16,7 +16,7 @@ import Button from "./Button";
 
 export default function MapComp() {
   const { cities } = useCities();
-  const [mapPosition, setMapPosition] = useState<number[] | string[]>([40, 0]);
+  const [mapPosition, setMapPosition] = useState<number[]>([40, 0]);
   const {
     isLoading: isLoadingPosition,
     position: geoLocationPosition,
@@ -27,9 +27,8 @@ export default function MapComp() {
   useEffect(
     function () {
       if (mapLat && mapLng) {
-        setMapPosition([mapLat, mapLng]);
+        setMapPosition([parseFloat(mapLat), parseFloat(mapLng)]);
       }
-      console.log("map lat:", mapLat);
     },
     [mapLat, mapLng],
   );
@@ -76,9 +75,11 @@ export default function MapComp() {
   );
 }
 
-function ChangeCenter({ position }) {
+function ChangeCenter({ position }: { position: number[] }) {
   const map = useMap();
-  map.setView(position);
+  useEffect(() => {
+    map.setView(position);
+  }, [position, map]);
   return null;
 }
 
